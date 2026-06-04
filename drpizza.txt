@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doktor Pizza — Pizza je terapija | Brza dostava</title>
+<meta name="description" content="Doktor Pizza — pizza je terapija. Brza dostava, preuzimanje na šalteru, hrana za ceo dan. Bratstva Jedinstva 28. Poruči: 066 660 80 60." />
+<meta property="og:title" content="Doktor Pizza — Pizza je terapija" />
+<meta property="og:description" content="Brza dostava i sveže pripremljena hrana za ceo dan. Terapija stiže na adresu." />
+<meta property="og:image" content="assets/storefront.png" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Bebas Neue"', 'Anton', 'sans-serif'],
+          brush: ['"Permanent Marker"', 'cursive'],
+          body: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          background: 'var(--background)',
+          foreground: 'var(--foreground)',
+          card: 'var(--card)',
+          border: 'var(--border)',
+          muted: { DEFAULT: 'var(--muted)', foreground: 'var(--muted-foreground)' },
+          neon: 'var(--neon)',
+          blood: 'var(--blood)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root{
+    --ink:#15100f;
+    --background:#15100f;
+    --foreground:#f5f1ea;
+    --blood:#d63327;
+    --blood-glow:#ef4a35;
+    --neon:#9bf03f;
+    --neon-glow:#b6ff5a;
+    --card:#1f1715;
+    --muted:#241b19;
+    --muted-foreground:#9a8f88;
+    --border:#2c2220;
+    --gradient-blood:linear-gradient(135deg,#d63327,#9a221a);
+    --gradient-radial-neon:radial-gradient(circle at 50% 50%,rgba(155,240,63,.25),transparent 70%);
+    --shadow-neon:0 0 24px rgba(155,240,63,.55),0 0 48px rgba(155,240,63,.25);
+    --shadow-blood:0 0 24px rgba(214,51,39,.55),0 0 48px rgba(214,51,39,.25);
+    --shadow-card:0 20px 60px -20px rgba(0,0,0,.8);
+  }
+  *{border-color:var(--border);}
+  html{scroll-behavior:smooth;}
+  body{
+    background-color:var(--background);
+    color:var(--foreground);
+    font-family:Inter,system-ui,sans-serif;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%,rgba(214,51,39,.18),transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%,rgba(155,240,63,.12),transparent 60%);
+    background-attachment:fixed;
+    overflow-x:clip;
+  }
+  .font-display{font-family:"Bebas Neue",Anton,sans-serif;letter-spacing:.02em;}
+  .font-brush{font-family:"Permanent Marker",cursive;}
+  .blood-text{color:var(--blood-glow);text-shadow:0 0 12px rgba(214,51,39,.6);}
+  .neon-text{color:var(--neon);text-shadow:0 0 8px rgba(155,240,63,.8),0 0 20px rgba(155,240,63,.4);}
+  .card-edge{background:linear-gradient(180deg,#1f1715,#1a1311);border:1px solid #2c2220;box-shadow:var(--shadow-card);}
+  .btn-blood{background:var(--gradient-blood);color:#fff;box-shadow:var(--shadow-blood);}
+  .btn-blood:hover{filter:brightness(1.1);}
+  .btn-neon{background:var(--neon);color:var(--ink);box-shadow:var(--shadow-neon);}
+  .btn-neon:hover{filter:brightness(1.1);}
+  @keyframes pulse-line{0%,100%{opacity:.55;transform:scaleX(1);}50%{opacity:1;transform:scaleX(1.02);}}
+  .heartbeat-line{background:linear-gradient(90deg,transparent,var(--neon),transparent);height:2px;filter:drop-shadow(0 0 6px var(--neon));animation:pulse-line 2.4s ease-in-out infinite;}
+  @keyframes scooter-dash{to{stroke-dashoffset:-200;}}
+  .route-dash{stroke-dasharray:12 10;animation:scooter-dash 4s linear infinite;}
+  @keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(155,240,63,.6);}50%{box-shadow:0 0 0 14px rgba(155,240,63,0);}}
+  .glow-pulse-neon{animation:glow-pulse 2s ease-in-out infinite;}
+  @keyframes glow-pulse-red{0%,100%{box-shadow:0 0 0 0 rgba(214,51,39,.6);}50%{box-shadow:0 0 0 14px rgba(214,51,39,0);}}
+  .glow-pulse-red{animation:glow-pulse-red 2s ease-in-out infinite;}
+  @keyframes float-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .animate-float-up{animation:float-up .8s ease-out both;}
+  .ico{width:1em;height:1em;display:inline-block;vertical-align:-.125em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+</head>
+<body id="top" class="min-h-screen">
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9l1.5-6h15L21 9"/><path d="M3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/><path d="M3 9h18"/></symbol>
+    <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7a3 3 0 0 0 3 3v10"/><path d="M9 2v20"/><path d="M14 2a4 4 0 0 0-4 4v6h4z"/><path d="M18 2v20"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18 9l-4.2 1.3L12 15l-1.8-4.7L6 9l4.2-1.3z"/><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9z"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ FLOATING CONTACTS ============ -->
+<div class="fixed right-3 sm:right-5 bottom-5 z-50 flex flex-col gap-3">
+  <a href="viber://chat?number=+381666608060" aria-label="Viber" class="glow-pulse-neon group relative flex h-14 w-14 items-center justify-center rounded-full text-white transition-transform hover:scale-110" style="background:#7360f2;box-shadow:0 0 24px rgba(115,96,242,.6);">
+    <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor" aria-hidden="true"><path d="M11.4 0C9.5.1 5.5.4 3.2 2.5 1.6 4.1 1 6.6.9 9.6c-.1 3 0 8.7 5.5 10.3v2.4s0 1 .6 1.2c.8.3 1.2-.5 2-1.4l1.4-1.6c3.7.3 6.6-.4 6.9-.5 1.7-.6 5.4-1 6-6.5.6-5.7-.3-9.3-1.9-11C20.4.4 16.5.1 14.6 0h-3.2z"/></svg>
+  </a>
+  <a href="tel:+381666608060" aria-label="Pozovi" class="glow-pulse-red group relative flex h-14 w-14 items-center justify-center rounded-full btn-blood transition-transform hover:scale-110">
+    <svg class="ico" style="font-size:1.5rem"><use href="#i-phone"/></svg>
+  </a>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-40 backdrop-blur-md bg-black/60 border-b border-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3">
+      <img src="assets/logo.png" alt="Doktor Pizza logo" class="h-11 w-11 rounded-full ring-1 ring-border" />
+      <span class="font-display text-xl tracking-wider hidden sm:inline">DOKTOR <span class="blood-text">PIZZA</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-[color:var(--muted-foreground)]">
+      <a href="#top" class="hover:text-white">Početna</a>
+      <a href="#meni" class="hover:text-white">Meni</a>
+      <a href="#dostava" class="hover:text-white">Dostava</a>
+      <a href="#o-nama" class="hover:text-white">O nama</a>
+      <a href="#kontakt" class="hover:text-white">Kontakt</a>
+    </nav>
+    <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-sm font-semibold uppercase tracking-wide">
+      <svg class="ico"><use href="#i-phone"/></svg>
+      <span class="hidden sm:inline">Naruči odmah</span><span class="sm:hidden">Pozovi</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="relative">
+  <div class="absolute inset-0">
+    <img src="assets/storefront.png" alt="Doktor Pizza objekat — Bratstva Jedinstva 28" class="h-full w-full object-cover object-center" />
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(21,16,15,.4),rgba(21,16,15,.6),var(--background));"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(21,16,15,.85),rgba(21,16,15,.3),transparent);"></div>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-24 sm:pt-24 sm:pb-32 lg:pt-32 lg:pb-40">
+    <div class="max-w-2xl animate-float-up">
+      <div class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs uppercase tracking-[0.2em] neon-text" style="border-color:rgba(155,240,63,.4);background:rgba(21,16,15,.6);">
+        <span class="h-2 w-2 rounded-full" style="background:var(--neon);box-shadow:0 0 10px var(--neon);"></span>
+        Terapija stiže brzo
+      </div>
+      <h1 class="font-display mt-6 text-6xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight">
+        DOKTOR<br />
+        <span class="font-brush blood-text text-7xl sm:text-8xl lg:text-9xl italic">Pizza</span>
+      </h1>
+      <div class="heartbeat-line w-56 my-6"></div>
+      <p class="text-2xl sm:text-3xl font-display tracking-wide">Pizza je <span class="neon-text">terapija</span>.</p>
+      <p class="mt-4 text-base sm:text-lg text-[color:var(--muted-foreground)] max-w-xl">
+        Terapija za ceo dan — od doručka, preko ručka, do večere. Lečimo sve vrste raspoloženja i dobrog ukusa.
+      </p>
+      <p class="mt-2 text-sm text-white/80"><span class="neon-text font-semibold">Brza dostava</span> i preuzimanje na šalteru.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold uppercase tracking-wider">
+          <svg class="ico"><use href="#i-phone"/></svg> Naruči odmah
+        </a>
+        <a href="#meni" class="inline-flex items-center gap-2 rounded-full border border-border bg-[color:var(--card)]/60 px-6 py-3.5 text-sm font-semibold uppercase tracking-wider hover:text-[color:var(--neon)]">
+          Pogledaj meni <svg class="ico"><use href="#i-chev"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="heartbeat-line w-full"></div>
+</section>
+
+<!-- ============ BRAND CONCEPT ============ -->
+<section id="o-nama" class="relative py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="max-w-3xl">
+      <p class="uppercase text-xs tracking-[0.3em] neon-text mb-3">// Pizza terapija</p>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+        Terapija za <span class="blood-text">glad</span>, raspoloženje<br />i <span class="neon-text">dobar ukus</span>.
+      </h2>
+      <p class="mt-6 text-lg text-[color:var(--muted-foreground)]">
+        Kod Doktor Pizze, svaki obrok je mala terapija. Bilo da ti treba brz doručak, konkretan ručak, večera posle dugog dana ili nešto slatko — terapija stiže brzo.
+      </p>
+    </div>
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="card-edge rounded-2xl p-7 relative overflow-hidden">
+        <svg class="ico blood-text" style="font-size:2.25rem"><use href="#i-truck"/></svg>
+        <h3 class="font-display text-2xl mt-5 tracking-wide">Brza dostava</h3>
+        <p class="mt-2 text-sm text-[color:var(--muted-foreground)]">Terapija stiže do tvojih vrata — toplo, sveže, brzo.</p>
+      </div>
+      <div class="card-edge rounded-2xl p-7 relative overflow-hidden">
+        <svg class="ico neon-text" style="font-size:2.25rem"><use href="#i-store"/></svg>
+        <h3 class="font-display text-2xl mt-5 tracking-wide">Preuzimanje na šalteru</h3>
+        <p class="mt-2 text-sm text-[color:var(--muted-foreground)]">Svrati, uzmi i nastavi dan bez čekanja.</p>
+      </div>
+      <div class="card-edge rounded-2xl p-7 relative overflow-hidden">
+        <svg class="ico blood-text" style="font-size:2.25rem"><use href="#i-utensils"/></svg>
+        <h3 class="font-display text-2xl mt-5 tracking-wide">Obroci za ceo dan</h3>
+        <p class="mt-2 text-sm text-[color:var(--muted-foreground)]">Doručak, ručak i večera — terapija u 3 doze.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DELIVERY ============ -->
+<section id="dostava" class="relative py-20 sm:py-28 overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="assets/scooter.jpg" alt="" class="h-full w-full object-cover opacity-30" loading="lazy" />
+    <div class="absolute inset-0" style="background:linear-gradient(to right,var(--background),rgba(21,16,15,.8),rgba(21,16,15,.4));"></div>
+  </div>
+  <svg class="absolute inset-x-0 bottom-10 w-full h-24 opacity-70 pointer-events-none" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 80 Q 300 20 600 60 T 1200 40" fill="none" stroke="#9bf03f" stroke-width="2" class="route-dash" style="filter:drop-shadow(0 0 8px #9bf03f);" />
+  </svg>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <div class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs uppercase tracking-[0.2em] blood-text" style="border-color:rgba(214,51,39,.5);background:rgba(21,16,15,.6);">
+        <svg class="ico"><use href="#i-truck"/></svg> Dostava
+      </div>
+      <h2 class="font-display mt-5 text-5xl sm:text-6xl lg:text-7xl leading-[0.95]">
+        Terapija stiže<br /><span class="neon-text">na adresu</span>.
+      </h2>
+      <p class="mt-5 text-lg text-[color:var(--muted-foreground)] max-w-lg">
+        Brza dostava, sveže pripremljena hrana i ukus koji popravlja dan. Bez komplikacija — samo dobar obrok kad ti najviše treba.
+      </p>
+      <ul class="mt-6 grid grid-cols-2 gap-3 max-w-md">
+        <li class="flex items-center gap-2 text-sm"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--neon);box-shadow:0 0 8px var(--neon);"></span>Brzo</li>
+        <li class="flex items-center gap-2 text-sm"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--neon);box-shadow:0 0 8px var(--neon);"></span>Sveže</li>
+        <li class="flex items-center gap-2 text-sm"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--neon);box-shadow:0 0 8px var(--neon);"></span>Praktično</li>
+        <li class="flex items-center gap-2 text-sm"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--neon);box-shadow:0 0 8px var(--neon);"></span>Na adresu</li>
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold uppercase tracking-wider">
+          <svg class="ico"><use href="#i-phone"/></svg> Pozovi za porudžbinu
+        </a>
+        <a href="viber://chat?number=+381666608060" class="btn-neon inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold uppercase tracking-wider">
+          Pošalji porudžbinu
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-[color:var(--muted-foreground)]">
+        Telefon: <a href="tel:+381666608060" class="text-white font-semibold">066 660 80 60</a>
+      </p>
+    </div>
+    <div class="relative">
+      <div class="card-edge rounded-3xl p-2" style="box-shadow:var(--shadow-blood);">
+        <img src="assets/scooter.jpg" alt="Brza dostava na adresu" loading="lazy" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+      </div>
+      <div class="absolute -bottom-5 -left-5 card-edge rounded-2xl px-5 py-4 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full btn-neon flex items-center justify-center">
+            <svg class="ico" style="font-size:1.25rem"><use href="#i-zap"/></svg>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-widest text-[color:var(--muted-foreground)]">Prosečno vreme</p>
+            <p class="font-display text-xl">30–45 min</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="meni" class="py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <div>
+        <p class="uppercase text-xs tracking-[0.3em] neon-text mb-3">// Meni</p>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+          Šta <span class="blood-text">prepisujemo</span> danas?
+        </h2>
+      </div>
+      <a href="tel:+381666608060" class="hidden sm:inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold uppercase tracking-wider hover:text-[color:var(--neon)]">
+        <svg class="ico"><use href="#i-phone"/></svg> Prepiši terapiju
+      </a>
+    </div>
+    <div id="menu-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5"></div>
+  </div>
+</section>
+
+<!-- ============ QUALITY ============ -->
+<section class="py-20 sm:py-28 border-y border-border" style="background:rgba(31,23,21,.3);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="max-w-2xl">
+      <p class="uppercase text-xs tracking-[0.3em] neon-text mb-3">// Kvalitet</p>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+        Kvalitet koji se oseća<br />na <span class="blood-text">prvi zalogaj</span>.
+      </h2>
+      <p class="mt-5 text-lg text-[color:var(--muted-foreground)]">
+        Pažljivo birani sastojci, brza priprema i bogat meni za svaki deo dana.
+      </p>
+    </div>
+    <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="card-edge rounded-2xl p-6 text-center">
+        <div class="mx-auto h-12 w-12 rounded-full btn-blood flex items-center justify-center"><svg class="ico" style="font-size:1.25rem"><use href="#i-sparkles"/></svg></div>
+        <p class="mt-4 font-display text-lg tracking-wide">Sveže pripremljeno</p>
+      </div>
+      <div class="card-edge rounded-2xl p-6 text-center">
+        <div class="mx-auto h-12 w-12 rounded-full btn-neon flex items-center justify-center"><svg class="ico" style="font-size:1.25rem"><use href="#i-zap"/></svg></div>
+        <p class="mt-4 font-display text-lg tracking-wide">Brzo gotovo</p>
+      </div>
+      <div class="card-edge rounded-2xl p-6 text-center">
+        <div class="mx-auto h-12 w-12 rounded-full btn-blood flex items-center justify-center"><svg class="ico" style="font-size:1.25rem"><use href="#i-utensils"/></svg></div>
+        <p class="mt-4 font-display text-lg tracking-wide">Bogat meni</p>
+      </div>
+      <div class="card-edge rounded-2xl p-6 text-center">
+        <div class="mx-auto h-12 w-12 rounded-full btn-neon flex items-center justify-center"><svg class="ico" style="font-size:1.25rem"><use href="#i-heart"/></svg></div>
+        <p class="mt-4 font-display text-lg tracking-wide">Dobar ukus svaki dan</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="uppercase text-xs tracking-[0.3em] neon-text mb-3">// Zašto baš mi</p>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+        Zašto baš<br /><span class="blood-text">Doktor Pizza</span>?
+      </h2>
+      <ul class="mt-8 space-y-4">
+        <li class="flex items-start gap-4"><span class="font-display text-2xl neon-text w-8 shrink-0">01</span><span class="text-lg pt-0.5">Pizza je terapija.</span></li>
+        <li class="flex items-start gap-4"><span class="font-display text-2xl neon-text w-8 shrink-0">02</span><span class="text-lg pt-0.5">Hrana za ceo dan.</span></li>
+        <li class="flex items-start gap-4"><span class="font-display text-2xl neon-text w-8 shrink-0">03</span><span class="text-lg pt-0.5">Brza dostava.</span></li>
+        <li class="flex items-start gap-4"><span class="font-display text-2xl neon-text w-8 shrink-0">04</span><span class="text-lg pt-0.5">Preuzimanje bez čekanja.</span></li>
+        <li class="flex items-start gap-4"><span class="font-display text-2xl neon-text w-8 shrink-0">05</span><span class="text-lg pt-0.5">Ukus koji popravlja raspoloženje.</span></li>
+      </ul>
+    </div>
+    <div class="relative">
+      <div class="absolute inset-0 rounded-3xl" style="background:var(--gradient-radial-neon);"></div>
+      <div class="relative card-edge rounded-3xl p-10 text-center">
+        <img src="assets/logo.png" alt="Doktor Pizza" class="mx-auto h-44 w-44 rounded-full" />
+        <p class="mt-6 font-brush text-3xl blood-text">Pizza je terapija.</p>
+        <div class="heartbeat-line w-40 mx-auto my-4"></div>
+        <p class="text-sm text-[color:var(--muted-foreground)] uppercase tracking-[0.3em]">Lečimo glad od 2024.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="kontakt" class="py-20 sm:py-28 border-t border-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="max-w-2xl">
+      <p class="uppercase text-xs tracking-[0.3em] neon-text mb-3">// Kontakt</p>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+        Prepiši <span class="blood-text">terapiju</span> već danas.
+      </h2>
+    </div>
+    <div class="mt-12 grid md:grid-cols-3 gap-5">
+      <div class="card-edge rounded-2xl p-6">
+        <svg class="ico blood-text" style="font-size:1.75rem"><use href="#i-map"/></svg>
+        <p class="mt-4 uppercase text-xs tracking-widest text-[color:var(--muted-foreground)]">Adresa</p>
+        <p class="mt-1 font-display text-2xl">Bratstva Jedinstva 28</p>
+      </div>
+      <div class="card-edge rounded-2xl p-6">
+        <svg class="ico neon-text" style="font-size:1.75rem"><use href="#i-phone"/></svg>
+        <p class="mt-4 uppercase text-xs tracking-widest text-[color:var(--muted-foreground)]">Telefon</p>
+        <a href="tel:+381666608060" class="mt-1 font-display text-2xl block">066 660 80 60</a>
+      </div>
+      <div class="card-edge rounded-2xl p-6">
+        <svg class="ico blood-text" style="font-size:1.75rem"><use href="#i-clock"/></svg>
+        <p class="mt-4 uppercase text-xs tracking-widest text-[color:var(--muted-foreground)]">Radno vreme</p>
+        <p class="mt-1 font-display text-2xl">Uskoro</p>
+      </div>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold uppercase tracking-wider">
+        <svg class="ico"><use href="#i-phone"/></svg> Poziv
+      </a>
+      <a href="viber://chat?number=+381666608060" class="btn-neon inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold uppercase tracking-wider">
+        <svg class="ico"><use href="#i-flame"/></svg> Viber
+      </a>
+      <a href="https://instagram.com" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold uppercase tracking-wider hover:text-[color:var(--neon)]">
+        <svg class="ico"><use href="#i-ig"/></svg> Instagram
+      </a>
+      <a href="https://facebook.com" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold uppercase tracking-wider hover:text-[color:var(--neon)]">
+        <svg class="ico"><use href="#i-fb"/></svg> Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-border py-12" style="background:rgba(31,23,21,.3);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8 items-start">
+    <div>
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Doktor Pizza" class="h-12 w-12 rounded-full" />
+        <span class="font-display text-xl tracking-wider">DOKTOR <span class="blood-text">PIZZA</span></span>
+      </div>
+      <p class="mt-3 font-brush text-xl blood-text">Pizza je terapija.</p>
+    </div>
+    <div class="text-sm space-y-1">
+      <p class="uppercase text-xs tracking-[0.25em] text-[color:var(--muted-foreground)] mb-2">Kontakt</p>
+      <p>Bratstva Jedinstva 28</p>
+      <a href="tel:+381666608060" class="block">066 660 80 60</a>
+    </div>
+    <div class="text-sm space-y-2">
+      <p class="uppercase text-xs tracking-[0.25em] text-[color:var(--muted-foreground)] mb-2">Prati nas</p>
+      <div class="flex gap-3">
+        <a aria-label="Instagram" href="https://instagram.com" class="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:text-[color:var(--neon)]"><svg class="ico"><use href="#i-ig"/></svg></a>
+        <a aria-label="Facebook" href="https://facebook.com" class="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:text-[color:var(--neon)]"><svg class="ico"><use href="#i-fb"/></svg></a>
+        <a aria-label="Viber" href="viber://chat?number=+381666608060" class="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:text-[color:var(--neon)]"><svg class="ico"><use href="#i-flame"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="mt-10 max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-3 text-xs text-[color:var(--muted-foreground)] border-t border-border pt-6">
+    <p>© <span id="year"></span> Doktor Pizza — Pizza je terapija.</p>
+    <p>Bratstva Jedinstva 28 · 066 660 80 60</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const CATEGORIES = [
+    { img: 'assets/pizza.jpg',     title: 'Pizza',                line: 'Glavna terapija.',                accent: 'blood' },
+    { img: 'assets/paste.jpg',     title: 'Paste',                line: 'Kremasto rešenje za glad.',       accent: 'neon'  },
+    { img: 'assets/piletina.jpg',  title: 'Hrskava piletina',     line: 'Kad treba nešto ozbiljno.',       accent: 'blood' },
+    { img: 'assets/pohovane.jpg',  title: 'Pohovane palačinke',   line: 'Terapija sa krckanjem.',          accent: 'neon'  },
+    { img: 'assets/sendvic.jpg',   title: 'Sendviči',             line: 'Brzo, jako, konkretno.',          accent: 'blood' },
+    { img: 'assets/omlet.jpg',     title: 'Omleti',               line: 'Jutarnja terapija.',              accent: 'neon'  },
+    { img: 'assets/jaje.jpg',      title: 'Jaje na oko',          line: 'Klasika za dobar početak dana.',  accent: 'blood' },
+    { img: 'assets/tortilja.jpg',  title: 'Tortilje',             line: 'Terapija u pokretu.',             accent: 'neon'  },
+    { img: 'assets/vafli.jpg',     title: 'Vafli',                line: 'Slatka doza energije.',           accent: 'blood' },
+    { img: 'assets/slatke.jpg',    title: 'Slatke palačinke',     line: 'Terapija za dušu.',               accent: 'neon'  },
+  ];
+  const grid = document.getElementById('menu-grid');
+  grid.innerHTML = CATEGORIES.map(c => `
+    <article class="card-edge rounded-2xl overflow-hidden group cursor-pointer">
+      <div class="relative aspect-square overflow-hidden">
+        <img src="${c.img}" alt="${c.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <div class="absolute inset-0" style="background:linear-gradient(to top,var(--background),rgba(21,16,15,.3),transparent);"></div>
+        <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full backdrop-blur-md border ${c.accent==='neon' ? 'neon-text' : 'blood-text'}"
+              style="background:${c.accent==='neon'?'rgba(155,240,63,.15)':'rgba(214,51,39,.15)'};border-color:${c.accent==='neon'?'rgba(155,240,63,.4)':'rgba(214,51,39,.4)'};">Rx</span>
+      </div>
+      <div class="p-4">
+        <h3 class="font-display text-lg sm:text-xl tracking-wide">${c.title}</h3>
+        <p class="text-xs text-[color:var(--muted-foreground)] mt-1">${c.line}</p>
+      </div>
+    </article>
+  `).join('');
+</script>
+</body>
+</html>
