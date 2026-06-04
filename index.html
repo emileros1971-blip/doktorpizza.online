@@ -7,7 +7,7 @@
 <meta name="description" content="Doktor Pizza — pizza je terapija. Brza dostava, preuzimanje na šalteru, hrana za ceo dan. Bratstva Jedinstva 28. Poruči: 066 660 80 60." />
 <meta property="og:title" content="Doktor Pizza — Pizza je terapija" />
 <meta property="og:description" content="Brza dostava i sveže pripremljena hrana za ceo dan. Terapija stiže na adresu." />
-<meta property="og:image" content="assets/storefront.png" />
+<meta property="og:image" content="storefront.png" />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -123,7 +123,7 @@
 <header class="sticky top-0 z-40 backdrop-blur-md bg-black/60 border-b border-border">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-3">
-      <img src="assets/logo.png" alt="Doktor Pizza logo" class="h-11 w-11 rounded-full ring-1 ring-border" />
+      <img src="logo.png" alt="Doktor Pizza logo" class="h-11 w-11 rounded-full ring-1 ring-border" />
       <span class="font-display text-xl tracking-wider hidden sm:inline">DOKTOR <span class="blood-text">PIZZA</span></span>
     </a>
     <nav class="hidden md:flex items-center gap-7 text-sm text-[color:var(--muted-foreground)]">
@@ -143,7 +143,7 @@
 <!-- ============ HERO ============ -->
 <section class="relative">
   <div class="absolute inset-0">
-    <img src="assets/storefront.png" alt="Doktor Pizza objekat — Bratstva Jedinstva 28" class="h-full w-full object-cover object-center" />
+    <img src="storefront.png" alt="Doktor Pizza objekat — Bratstva Jedinstva 28" class="h-full w-full object-cover object-center" />
     <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(21,16,15,.4),rgba(21,16,15,.6),var(--background));"></div>
     <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(21,16,15,.85),rgba(21,16,15,.3),transparent);"></div>
   </div>
@@ -211,7 +211,7 @@
 <!-- ============ DELIVERY ============ -->
 <section id="dostava" class="relative py-20 sm:py-28 overflow-hidden">
   <div class="absolute inset-0">
-    <img src="assets/scooter.jpg" alt="" class="h-full w-full object-cover opacity-30" loading="lazy" />
+    <img src="scooter.jpg" alt="" class="h-full w-full object-cover opacity-30" loading="lazy" />
     <div class="absolute inset-0" style="background:linear-gradient(to right,var(--background),rgba(21,16,15,.8),rgba(21,16,15,.4));"></div>
   </div>
   <svg class="absolute inset-x-0 bottom-10 w-full h-24 opacity-70 pointer-events-none" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
@@ -248,7 +248,7 @@
     </div>
     <div class="relative">
       <div class="card-edge rounded-3xl p-2" style="box-shadow:var(--shadow-blood);">
-        <img src="assets/scooter.jpg" alt="Brza dostava na adresu" loading="lazy" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+        <img src="scooter.jpg" alt="Brza dostava na adresu" loading="lazy" class="rounded-2xl w-full aspect-[4/3] object-cover" />
       </div>
       <div class="absolute -bottom-5 -left-5 card-edge rounded-2xl px-5 py-4 backdrop-blur-md">
         <div class="flex items-center gap-3">
@@ -335,7 +335,7 @@
     <div class="relative">
       <div class="absolute inset-0 rounded-3xl" style="background:var(--gradient-radial-neon);"></div>
       <div class="relative card-edge rounded-3xl p-10 text-center">
-        <img src="assets/logo.png" alt="Doktor Pizza" class="mx-auto h-44 w-44 rounded-full" />
+        <img src="logo.png" alt="Doktor Pizza" class="mx-auto h-44 w-44 rounded-full" />
         <p class="mt-6 font-brush text-3xl blood-text">Pizza je terapija.</p>
         <div class="heartbeat-line w-40 mx-auto my-4"></div>
         <p class="text-sm text-[color:var(--muted-foreground)] uppercase tracking-[0.3em]">Lečimo glad od 2024.</p>
@@ -392,7 +392,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8 items-start">
     <div>
       <div class="flex items-center gap-3">
-        <img src="assets/logo.png" alt="Doktor Pizza" class="h-12 w-12 rounded-full" />
+        <img src="logo.png" alt="Doktor Pizza" class="h-12 w-12 rounded-full" />
         <span class="font-display text-xl tracking-wider">DOKTOR <span class="blood-text">PIZZA</span></span>
       </div>
       <p class="mt-3 font-brush text-xl blood-text">Pizza je terapija.</p>
@@ -421,16 +421,16 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   const CATEGORIES = [
-    { img: 'assets/pizza.jpg',     title: 'Pizza',                line: 'Glavna terapija.',                accent: 'blood' },
-    { img: 'assets/paste.jpg',     title: 'Paste',                line: 'Kremasto rešenje za glad.',       accent: 'neon'  },
-    { img: 'assets/piletina.jpg',  title: 'Hrskava piletina',     line: 'Kad treba nešto ozbiljno.',       accent: 'blood' },
-    { img: 'assets/pohovane.jpg',  title: 'Pohovane palačinke',   line: 'Terapija sa krckanjem.',          accent: 'neon'  },
-    { img: 'assets/sendvic.jpg',   title: 'Sendviči',             line: 'Brzo, jako, konkretno.',          accent: 'blood' },
-    { img: 'assets/omlet.jpg',     title: 'Omleti',               line: 'Jutarnja terapija.',              accent: 'neon'  },
-    { img: 'assets/jaje.jpg',      title: 'Jaje na oko',          line: 'Klasika za dobar početak dana.',  accent: 'blood' },
-    { img: 'assets/tortilja.jpg',  title: 'Tortilje',             line: 'Terapija u pokretu.',             accent: 'neon'  },
-    { img: 'assets/vafli.jpg',     title: 'Vafli',                line: 'Slatka doza energije.',           accent: 'blood' },
-    { img: 'assets/slatke.jpg',    title: 'Slatke palačinke',     line: 'Terapija za dušu.',               accent: 'neon'  },
+    { img: 'pizza.jpg',     title: 'Pizza',                line: 'Glavna terapija.',                accent: 'blood' },
+    { img: 'paste.jpg',     title: 'Paste',                line: 'Kremasto rešenje za glad.',       accent: 'neon'  },
+    { img: 'piletina.jpg',  title: 'Hrskava piletina',     line: 'Kad treba nešto ozbiljno.',       accent: 'blood' },
+    { img: 'pohovane.jpg',  title: 'Pohovane palačinke',   line: 'Terapija sa krckanjem.',          accent: 'neon'  },
+    { img: 'sendvic.jpg',   title: 'Sendviči',             line: 'Brzo, jako, konkretno.',          accent: 'blood' },
+    { img: 'omlet.jpg',     title: 'Omleti',               line: 'Jutarnja terapija.',              accent: 'neon'  },
+    { img: 'jaje.jpg',      title: 'Jaje na oko',          line: 'Klasika za dobar početak dana.',  accent: 'blood' },
+    { img: 'tortilja.jpg',  title: 'Tortilje',             line: 'Terapija u pokretu.',             accent: 'neon'  },
+    { img: 'vafli.jpg',     title: 'Vafli',                line: 'Slatka doza energije.',           accent: 'blood' },
+    { img: 'slatke.jpg',    title: 'Slatke palačinke',     line: 'Terapija za dušu.',               accent: 'neon'  },
   ];
   const grid = document.getElementById('menu-grid');
   grid.innerHTML = CATEGORIES.map(c => `
