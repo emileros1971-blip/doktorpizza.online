@@ -160,7 +160,7 @@
       <div class="heartbeat-line w-56 my-6"></div>
       <p class="text-2xl sm:text-3xl font-display tracking-wide">Pizza je <span class="neon-text">terapija</span>.</p>
       <p class="mt-4 text-base sm:text-lg text-[color:var(--muted-foreground)] max-w-xl">
-        Terapija za ceo dan — od doručka, preko ručka, do večere. Lečimo sve vrste raspoloženja i dobrog ukusa.
+        Terapija za ceo dan — od doručka, preko ručka, do večere. Za dobar ukus i dobro raspoloženje, mi imamo rešenje.
       </p>
       <p class="mt-2 text-sm text-white/80"><span class="neon-text font-semibold">Brza dostava</span> i preuzimanje na šalteru.</p>
       <div class="mt-8 flex flex-wrap gap-3">
@@ -185,14 +185,14 @@
         Terapija za <span class="blood-text">glad</span>, raspoloženje<br />i <span class="neon-text">dobar ukus</span>.
       </h2>
       <p class="mt-6 text-lg text-[color:var(--muted-foreground)]">
-        Kod Doktor Pizze, svaki obrok je mala terapija. Bilo da ti treba brz doručak, konkretan ručak, večera posle dugog dana ili nešto slatko — terapija stiže brzo.
+        Kod Doktor Pizze, svaki obrok je mala terapija. Za ljubitelje slanog ili slatkog jela, mi smo tu da zadovoljna bude porodica cela.
       </p>
     </div>
     <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
       <div class="card-edge rounded-2xl p-7 relative overflow-hidden">
         <svg class="ico blood-text" style="font-size:2.25rem"><use href="#i-truck"/></svg>
         <h3 class="font-display text-2xl mt-5 tracking-wide">Brza dostava</h3>
-        <p class="mt-2 text-sm text-[color:var(--muted-foreground)]">Terapija stiže do tvojih vrata — toplo, sveže, brzo.</p>
+        <p class="mt-2 text-sm text-[color:var(--muted-foreground)]">Obroci stižu do tvojih vrata — toplo, sveže, brzo.</p>
       </div>
       <div class="card-edge rounded-2xl p-7 relative overflow-hidden">
         <svg class="ico neon-text" style="font-size:2.25rem"><use href="#i-store"/></svg>
@@ -223,7 +223,7 @@
         <svg class="ico"><use href="#i-truck"/></svg> Dostava
       </div>
       <h2 class="font-display mt-5 text-5xl sm:text-6xl lg:text-7xl leading-[0.95]">
-        Terapija stiže<br /><span class="neon-text">na adresu</span>.
+        Obroci stižu<br /><span class="neon-text">na adresu</span>.
       </h2>
       <p class="mt-5 text-lg text-[color:var(--muted-foreground)] max-w-lg">
         Brza dostava, sveže pripremljena hrana i ukus koji popravlja dan. Bez komplikacija — samo dobar obrok kad ti najviše treba.
@@ -244,6 +244,11 @@
       </div>
       <p class="mt-4 text-sm text-[color:var(--muted-foreground)]">
         Telefon: <a href="tel:+381666608060" class="text-white font-semibold">066 660 80 60</a>
+      </p>
+      <p class="mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs sm:text-sm" style="border-color:rgba(155,240,63,.4);background:rgba(155,240,63,.08);">
+        <svg class="ico neon-text"><use href="#i-truck"/></svg>
+        <span class="neon-text font-semibold">Besplatna dostava</span>
+        <span class="text-[color:var(--muted-foreground)]">za porudžbine preko 500 din.</span>
       </p>
     </div>
     <div class="relative">
@@ -367,7 +372,7 @@
       <div class="card-edge rounded-2xl p-6">
         <svg class="ico blood-text" style="font-size:1.75rem"><use href="#i-clock"/></svg>
         <p class="mt-4 uppercase text-xs tracking-widest text-[color:var(--muted-foreground)]">Radno vreme</p>
-        <p class="mt-1 font-display text-2xl">Uskoro</p>
+        <p class="mt-1 font-display text-xl leading-snug">Pon – Sub: 8h – 22h<br/>Nedelja: 14h – 22h</p>
       </div>
     </div>
     <div class="mt-8 flex flex-wrap gap-3">
@@ -420,21 +425,90 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // ====== PRODUCT DATA (placeholders — easy to replace images/prices later) ======
+  // Replace `img` paths with real photos (e.g. 'products/margarita.jpg') and adjust `price` as needed.
+  const PRODUCTS = {
+    'pizza': [
+      { name: 'Margarita',          desc: 'Paradajz, mocarela, bosiljak.',                  price: 1000, img: 'products/pizza-margarita.jpg' },
+      { name: 'Kaprićoza',          desc: 'Šunka, pečurke, mocarela, masline.',             price: 1000, img: 'products/pizza-kapricoza.jpg' },
+      { name: 'Peperoni',           desc: 'Ljuta peperoni kobasica i mocarela.',            price: 1000, img: 'products/pizza-peperoni.jpg' },
+      { name: 'Vesuvio',            desc: 'Šunka, mocarela, paradajz.',                     price: 1000, img: 'products/pizza-vesuvio.jpg' },
+      { name: 'Quattro Formaggi',   desc: 'Četiri vrste sira u savršenoj harmoniji.',       price: 1000, img: 'products/pizza-quattro.jpg' },
+      { name: 'Vegetariana',        desc: 'Sezonsko povrće, mocarela, maslinovo ulje.',     price: 1000, img: 'products/pizza-vegetariana.jpg' },
+      { name: 'Doktor Pizza Specijal', desc: 'Specijalitet kuće — recept doktora.',         price: 1000, img: 'products/pizza-specijal.jpg' },
+      { name: 'Slanina Pizza',      desc: 'Hrskava slanina, mocarela, paradajz.',           price: 1000, img: 'products/pizza-slanina.jpg' },
+      { name: 'Tuna Pizza',         desc: 'Tunjevina, crveni luk, masline.',                price: 1000, img: 'products/pizza-tuna.jpg' },
+      { name: 'BBQ Piletina Pizza', desc: 'Piletina u BBQ sosu, luk, mocarela.',            price: 1000, img: 'products/pizza-bbq.jpg' },
+      { name: 'Ljuta Pizza',        desc: 'Za ljubitelje vatre — peperoni i čili.',         price: 1000, img: 'products/pizza-ljuta.jpg' },
+      { name: 'Porodična Pizza',    desc: 'Veliki format — dovoljno za celu porodicu.',     price: 1000, img: 'products/pizza-porodicna.jpg' },
+    ],
+    'paste': [
+      { name: 'Paste Bolognese',    desc: 'Klasik sa sosom od mlevenog mesa.',              price: 1000, img: 'products/paste-bolognese.jpg' },
+      { name: 'Paste Carbonara',    desc: 'Kremasto, sa slaninom i parmezanom.',            price: 1000, img: 'products/paste-carbonara.jpg' },
+      { name: 'Paste Quattro Formaggi', desc: 'Četiri sira u svilenom sosu.',               price: 1000, img: 'products/paste-formaggi.jpg' },
+      { name: 'Paste Napoletana',   desc: 'Paradajz, beli luk, bosiljak.',                  price: 1000, img: 'products/paste-napoletana.jpg' },
+    ],
+    'hrskava-piletina': [
+      { name: 'Hrskava piletina',       desc: 'Zlatno hrskava, sočna iznutra.',             price: 1000, img: 'products/piletina-hrskava.jpg' },
+      { name: 'Ljuta hrskava piletina', desc: 'Sa ljutom panirkom za ljubitelje vatre.',    price: 1000, img: 'products/piletina-ljuta.jpg' },
+      { name: 'Pileći strips',          desc: 'Trakice hrskave piletine uz sos.',           price: 1000, img: 'products/piletina-strips.jpg' },
+      { name: 'Pileći sendvič',         desc: 'Hrskava piletina u zemičci, sos, salata.',   price: 1000, img: 'products/piletina-sendvic.jpg' },
+      { name: 'Piletina u tortilji',    desc: 'Tortilja sa piletinom, salatom i sosom.',    price: 1000, img: 'products/piletina-tortilja.jpg' },
+    ],
+    'pohovane-palacinke': [
+      { name: 'Pohovana palačinka sa šunkom i sirom', desc: 'Slana klasika, hrskavo iznutra.', price: 1000, img: 'products/pohovana-sunka-sir.jpg' },
+      { name: 'Pohovana palačinka sa piletinom',      desc: 'Sa komadićima piletine i sirom.',  price: 1000, img: 'products/pohovana-piletina.jpg' },
+      { name: 'Pohovana palačinka sa pečurkama',      desc: 'Pečurke, sir, hrskava korica.',    price: 1000, img: 'products/pohovana-pecurke.jpg' },
+    ],
+    'sendvici': [
+      { name: 'Sendvič sa šunkom i sirom', desc: 'Klasik u svežoj zemičci.',                price: 1000, img: 'products/sendvic-sunka.jpg' },
+      { name: 'Sendvič sa piletinom',      desc: 'Piletina, salata, sos.',                  price: 1000, img: 'products/sendvic-piletina.jpg' },
+      { name: 'Sendvič sa slaninom',       desc: 'Hrskava slanina, sir, paradajz.',         price: 1000, img: 'products/sendvic-slanina.jpg' },
+    ],
+    'omleti': [
+      { name: 'Omlet sa šunkom i sirom', desc: 'Klasičan omlet, jutarnja terapija.',        price: 1000, img: 'products/omlet-sunka.jpg' },
+      { name: 'Omlet sa povrćem',        desc: 'Paprika, paradajz, luk, sir.',              price: 1000, img: 'products/omlet-povrce.jpg' },
+      { name: 'Omlet sa slaninom',       desc: 'Hrskava slanina i sir.',                    price: 1000, img: 'products/omlet-slanina.jpg' },
+    ],
+    'jaje-na-oko': [
+      { name: 'Jaja na oko (2 kom)',         desc: 'Sveža jaja, savršeno pripremljena.',    price: 1000, img: 'products/jaje-klasik.jpg' },
+      { name: 'Jaja na oko sa slaninom',     desc: 'Hrskava slanina uz dva jaja.',          price: 1000, img: 'products/jaje-slanina.jpg' },
+      { name: 'Jaja na oko sa kobasicom',    desc: 'Domaća kobasica i jaja.',               price: 1000, img: 'products/jaje-kobasica.jpg' },
+    ],
+    'tortilje': [
+      { name: 'Tortilja sa piletinom', desc: 'Piletina, salata, sos.',                      price: 1000, img: 'products/tortilja-piletina.jpg' },
+      { name: 'Tortilja sa slaninom',  desc: 'Slanina, sir, povrće.',                       price: 1000, img: 'products/tortilja-slanina.jpg' },
+      { name: 'Vegetarijanska tortilja', desc: 'Sezonsko povrće i sos.',                    price: 1000, img: 'products/tortilja-veg.jpg' },
+    ],
+    'vafli': [
+      { name: 'Vafli sa čokoladom',   desc: 'Topla čokolada preko hrskavih vafli.',         price: 1000, img: 'products/vafli-cokolada.jpg' },
+      { name: 'Vafli sa Nutellom',    desc: 'Klasika koja uvek uspeva.',                    price: 1000, img: 'products/vafli-nutella.jpg' },
+      { name: 'Vafli sa voćem',       desc: 'Sveže voće i šlag.',                           price: 1000, img: 'products/vafli-voce.jpg' },
+    ],
+    'slatke-palacinke': [
+      { name: 'Palačinke sa Nutellom', desc: 'Tanke palačinke sa Nutellom.',                price: 1000, img: 'products/slatke-nutella.jpg' },
+      { name: 'Palačinke sa plazmom',  desc: 'Plazma krema u svakom zalogaju.',             price: 1000, img: 'products/slatke-plazma.jpg' },
+      { name: 'Voćna pita',            desc: 'Domaća pita sa sezonskim voćem.',             price: 1000, img: 'products/slatke-vocna-pita.jpg' },
+      { name: 'Palačinke sa eurokremom', desc: 'Klasik za male i velike.',                  price: 1000, img: 'products/slatke-eurokrem.jpg' },
+    ],
+  };
+
   const CATEGORIES = [
-    { img: 'pizza.jpg',     title: 'Pizza',                line: 'Glavna terapija.',                accent: 'blood' },
-    { img: 'paste.jpg',     title: 'Paste',                line: 'Kremasto rešenje za glad.',       accent: 'neon'  },
-    { img: 'piletina.jpg',  title: 'Hrskava piletina',     line: 'Kad treba nešto ozbiljno.',       accent: 'blood' },
-    { img: 'pohovane.jpg',  title: 'Pohovane palačinke',   line: 'Terapija sa krckanjem.',          accent: 'neon'  },
-    { img: 'sendvic.jpg',   title: 'Sendviči',             line: 'Brzo, jako, konkretno.',          accent: 'blood' },
-    { img: 'omlet.jpg',     title: 'Omleti',               line: 'Jutarnja terapija.',              accent: 'neon'  },
-    { img: 'jaje.jpg',      title: 'Jaje na oko',          line: 'Klasika za dobar početak dana.',  accent: 'blood' },
-    { img: 'tortilja.jpg',  title: 'Tortilje',             line: 'Terapija u pokretu.',             accent: 'neon'  },
-    { img: 'vafli.jpg',     title: 'Vafli',                line: 'Slatka doza energije.',           accent: 'blood' },
-    { img: 'slatke.jpg',    title: 'Slatke palačinke',     line: 'Terapija za dušu.',               accent: 'neon'  },
+    { id: 'pizza',              img: 'pizza.jpg',     title: 'Pizza',                line: 'Glavna terapija.',                accent: 'blood' },
+    { id: 'paste',              img: 'paste.jpg',     title: 'Paste',                line: 'Kremasto rešenje za glad.',       accent: 'neon'  },
+    { id: 'hrskava-piletina',   img: 'piletina.jpg',  title: 'Hrskava piletina',     line: 'Kad treba nešto ozbiljno.',       accent: 'blood' },
+    { id: 'pohovane-palacinke', img: 'pohovane.jpg',  title: 'Pohovane palačinke',   line: 'Terapija sa krckanjem.',          accent: 'neon'  },
+    { id: 'sendvici',           img: 'sendvic.jpg',   title: 'Sendviči',             line: 'Brzo, jako, konkretno.',          accent: 'blood' },
+    { id: 'omleti',             img: 'omlet.jpg',     title: 'Omleti',               line: 'Jutarnja terapija.',              accent: 'neon'  },
+    { id: 'jaje-na-oko',        img: 'jaje.jpg',      title: 'Jaje na oko',          line: 'Klasika za dobar početak dana.',  accent: 'blood' },
+    { id: 'tortilje',           img: 'tortilja.jpg',  title: 'Tortilje',             line: 'Terapija u pokretu.',             accent: 'neon'  },
+    { id: 'vafli',              img: 'vafli.jpg',     title: 'Vafli',                line: 'Slatka doza energije.',           accent: 'blood' },
+    { id: 'slatke-palacinke',   img: 'slatke.jpg',    title: 'Slatke palačinke',     line: 'Terapija za dušu.',               accent: 'neon'  },
   ];
+
   const grid = document.getElementById('menu-grid');
   grid.innerHTML = CATEGORIES.map(c => `
-    <article class="card-edge rounded-2xl overflow-hidden group cursor-pointer">
+    <article class="card-edge rounded-2xl overflow-hidden group cursor-pointer" data-category="${c.id}" role="button" tabindex="0" aria-label="Otvori kategoriju ${c.title}">
       <div class="relative aspect-square overflow-hidden">
         <img src="${c.img}" alt="${c.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
         <div class="absolute inset-0" style="background:linear-gradient(to top,var(--background),rgba(21,16,15,.3),transparent);"></div>
@@ -447,6 +521,90 @@
       </div>
     </article>
   `).join('');
+
+  // ====== CATEGORY MODAL ======
+  const modal       = document.getElementById('category-modal');
+  const modalTitle  = document.getElementById('category-modal-title');
+  const modalLine   = document.getElementById('category-modal-line');
+  const modalGrid   = document.getElementById('category-modal-grid');
+  const modalClose  = document.getElementById('category-modal-close');
+  const modalBackdrop = document.getElementById('category-modal-backdrop');
+
+  function openCategory(id) {
+    const cat = CATEGORIES.find(c => c.id === id);
+    const items = PRODUCTS[id] || [];
+    if (!cat) return;
+    modalTitle.textContent = cat.title;
+    modalLine.textContent  = cat.line;
+    modalGrid.innerHTML = items.length ? items.map(p => `
+      <article class="card-edge rounded-2xl overflow-hidden flex flex-col">
+        <div class="relative aspect-[4/3] overflow-hidden bg-[color:var(--muted)]">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" class="h-full w-full object-cover"
+               onerror="this.style.display='none';this.parentElement.classList.add('flex','items-center','justify-center');this.parentElement.insertAdjacentHTML('beforeend','<span class=\'font-brush blood-text text-2xl\'>Doktor Pizza</span>');" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h4 class="font-display text-lg tracking-wide">${p.name}</h4>
+          <p class="text-xs text-[color:var(--muted-foreground)] mt-1 flex-1">${p.desc}</p>
+          <div class="mt-3 flex items-center justify-between gap-2">
+            <span class="font-display text-xl neon-text">${p.price} din</span>
+            <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-semibold uppercase tracking-wider">
+              <svg class="ico"><use href="#i-phone"/></svg> Naruči
+            </a>
+          </div>
+        </div>
+      </article>
+    `).join('') : `<p class="text-[color:var(--muted-foreground)] col-span-full">Uskoro dostupno.</p>`;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCategory() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('[data-category]');
+    if (card) openCategory(card.dataset.category);
+  });
+  grid.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('[data-category]')) {
+      e.preventDefault();
+      openCategory(e.target.closest('[data-category]').dataset.category);
+    }
+  });
+  modalClose.addEventListener('click', closeCategory);
+  modalBackdrop.addEventListener('click', closeCategory);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCategory(); });
 </script>
+
+<!-- ============ CATEGORY MODAL ============ -->
+<div id="category-modal" class="hidden fixed inset-0 z-[60] items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto">
+  <div id="category-modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+  <div class="relative w-full max-w-5xl card-edge rounded-3xl overflow-hidden my-6">
+    <div class="flex items-start justify-between gap-4 p-5 sm:p-7 border-b border-border">
+      <div>
+        <p class="uppercase text-xs tracking-[0.3em] neon-text mb-2">// Kategorija</p>
+        <h3 id="category-modal-title" class="font-display text-3xl sm:text-4xl tracking-wide">Kategorija</h3>
+        <p id="category-modal-line" class="text-sm text-[color:var(--muted-foreground)] mt-1"></p>
+      </div>
+      <button id="category-modal-close" aria-label="Zatvori" class="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:text-[color:var(--blood-glow)] shrink-0">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="p-5 sm:p-7">
+      <div id="category-modal-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
+      <div class="mt-7 flex flex-wrap gap-3 justify-center">
+        <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+          <svg class="ico"><use href="#i-phone"/></svg> Pozovi za porudžbinu
+        </a>
+        <a href="viber://chat?number=+381666608060" class="btn-neon inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+          Pošalji Viber
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
