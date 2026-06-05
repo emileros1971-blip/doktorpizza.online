@@ -422,6 +422,35 @@
   </div>
 </footer>
 
+<!-- ============ CATEGORY MODAL ============ -->
+<div id="category-modal" class="hidden fixed inset-0 z-[60] items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto">
+  <div id="category-modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+  <div class="relative w-full max-w-5xl card-edge rounded-3xl overflow-hidden my-6">
+    <div class="flex items-start justify-between gap-4 p-5 sm:p-7 border-b border-border">
+      <div>
+        <p class="uppercase text-xs tracking-[0.3em] neon-text mb-2">// Kategorija</p>
+        <h3 id="category-modal-title" class="font-display text-3xl sm:text-4xl tracking-wide">Kategorija</h3>
+        <p id="category-modal-line" class="text-sm text-[color:var(--muted-foreground)] mt-1"></p>
+      </div>
+      <button id="category-modal-close" aria-label="Zatvori" class="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:text-[color:var(--blood-glow)] shrink-0">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="p-5 sm:p-7">
+      <div id="category-modal-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
+      <div class="mt-7 flex flex-wrap gap-3 justify-center">
+        <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+          <svg class="ico"><use href="#i-phone"/></svg> Pozovi za porudžbinu
+        </a>
+        <a href="viber://chat?number=+381666608060" class="btn-neon inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+          Pošalji Viber
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -578,33 +607,6 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCategory(); });
 </script>
 
-<!-- ============ CATEGORY MODAL ============ -->
-<div id="category-modal" class="hidden fixed inset-0 z-[60] items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto">
-  <div id="category-modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-  <div class="relative w-full max-w-5xl card-edge rounded-3xl overflow-hidden my-6">
-    <div class="flex items-start justify-between gap-4 p-5 sm:p-7 border-b border-border">
-      <div>
-        <p class="uppercase text-xs tracking-[0.3em] neon-text mb-2">// Kategorija</p>
-        <h3 id="category-modal-title" class="font-display text-3xl sm:text-4xl tracking-wide">Kategorija</h3>
-        <p id="category-modal-line" class="text-sm text-[color:var(--muted-foreground)] mt-1"></p>
-      </div>
-      <button id="category-modal-close" aria-label="Zatvori" class="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:text-[color:var(--blood-glow)] shrink-0">
-        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="p-5 sm:p-7">
-      <div id="category-modal-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
-      <div class="mt-7 flex flex-wrap gap-3 justify-center">
-        <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider">
-          <svg class="ico"><use href="#i-phone"/></svg> Pozovi za porudžbinu
-        </a>
-        <a href="viber://chat?number=+381666608060" class="btn-neon inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider">
-          Pošalji Viber
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
