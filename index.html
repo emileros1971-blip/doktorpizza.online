@@ -454,92 +454,191 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ====== PRODUCT DATA (placeholders — easy to replace images/prices later) ======
-  // Replace `img` paths with real photos (e.g. 'products/margarita.jpg') and adjust `price` as needed.
+  // ====== MENU DATA — Doktor Pizza ======
+  // Products use either { price: NNN } for single price or { prices: [{label, price}, ...] } for multi-size.
   const PRODUCTS = {
-    'pizza': [
-      { name: 'Margarita',          desc: 'Paradajz, mocarela, bosiljak.',                  price: 1000, img: 'products/pizza-margarita.jpg' },
-      { name: 'Kaprićoza',          desc: 'Šunka, pečurke, mocarela, masline.',             price: 1000, img: 'products/pizza-kapricoza.jpg' },
-      { name: 'Peperoni',           desc: 'Ljuta peperoni kobasica i mocarela.',            price: 1000, img: 'products/pizza-peperoni.jpg' },
-      { name: 'Vesuvio',            desc: 'Šunka, mocarela, paradajz.',                     price: 1000, img: 'products/pizza-vesuvio.jpg' },
-      { name: 'Quattro Formaggi',   desc: 'Četiri vrste sira u savršenoj harmoniji.',       price: 1000, img: 'products/pizza-quattro.jpg' },
-      { name: 'Vegetariana',        desc: 'Sezonsko povrće, mocarela, maslinovo ulje.',     price: 1000, img: 'products/pizza-vegetariana.jpg' },
-      { name: 'Doktor Pizza Specijal', desc: 'Specijalitet kuće — recept doktora.',         price: 1000, img: 'products/pizza-specijal.jpg' },
-      { name: 'Slanina Pizza',      desc: 'Hrskava slanina, mocarela, paradajz.',           price: 1000, img: 'products/pizza-slanina.jpg' },
-      { name: 'Tuna Pizza',         desc: 'Tunjevina, crveni luk, masline.',                price: 1000, img: 'products/pizza-tuna.jpg' },
-      { name: 'BBQ Piletina Pizza', desc: 'Piletina u BBQ sosu, luk, mocarela.',            price: 1000, img: 'products/pizza-bbq.jpg' },
-      { name: 'Ljuta Pizza',        desc: 'Za ljubitelje vatre — peperoni i čili.',         price: 1000, img: 'products/pizza-ljuta.jpg' },
-      { name: 'Porodična Pizza',    desc: 'Veliki format — dovoljno za celu porodicu.',     price: 1000, img: 'products/pizza-porodicna.jpg' },
-    ],
-    'paste': [
-      { name: 'Paste Bolognese',    desc: 'Klasik sa sosom od mlevenog mesa.',              price: 1000, img: 'products/paste-bolognese.jpg' },
-      { name: 'Paste Carbonara',    desc: 'Kremasto, sa slaninom i parmezanom.',            price: 1000, img: 'products/paste-carbonara.jpg' },
-      { name: 'Paste Quattro Formaggi', desc: 'Četiri sira u svilenom sosu.',               price: 1000, img: 'products/paste-formaggi.jpg' },
-      { name: 'Paste Napoletana',   desc: 'Paradajz, beli luk, bosiljak.',                  price: 1000, img: 'products/paste-napoletana.jpg' },
-    ],
-    'hrskava-piletina': [
-      { name: 'Hrskava piletina',       desc: 'Zlatno hrskava, sočna iznutra.',             price: 1000, img: 'products/piletina-hrskava.jpg' },
-      { name: 'Ljuta hrskava piletina', desc: 'Sa ljutom panirkom za ljubitelje vatre.',    price: 1000, img: 'products/piletina-ljuta.jpg' },
-      { name: 'Pileći strips',          desc: 'Trakice hrskave piletine uz sos.',           price: 1000, img: 'products/piletina-strips.jpg' },
-      { name: 'Pileći sendvič',         desc: 'Hrskava piletina u zemičci, sos, salata.',   price: 1000, img: 'products/piletina-sendvic.jpg' },
-      { name: 'Piletina u tortilji',    desc: 'Tortilja sa piletinom, salatom i sosom.',    price: 1000, img: 'products/piletina-tortilja.jpg' },
-    ],
-    'pohovane-palacinke': [
-      { name: 'Pohovana palačinka sa šunkom i sirom', desc: 'Slana klasika, hrskavo iznutra.', price: 1000, img: 'products/pohovana-sunka-sir.jpg' },
-      { name: 'Pohovana palačinka sa piletinom',      desc: 'Sa komadićima piletine i sirom.',  price: 1000, img: 'products/pohovana-piletina.jpg' },
-      { name: 'Pohovana palačinka sa pečurkama',      desc: 'Pečurke, sir, hrskava korica.',    price: 1000, img: 'products/pohovana-pecurke.jpg' },
-    ],
-    'sendvici': [
-      { name: 'Sendvič sa šunkom i sirom', desc: 'Klasik u svežoj zemičci.',                price: 1000, img: 'products/sendvic-sunka.jpg' },
-      { name: 'Sendvič sa piletinom',      desc: 'Piletina, salata, sos.',                  price: 1000, img: 'products/sendvic-piletina.jpg' },
-      { name: 'Sendvič sa slaninom',       desc: 'Hrskava slanina, sir, paradajz.',         price: 1000, img: 'products/sendvic-slanina.jpg' },
-    ],
-    'omleti': [
-      { name: 'Omlet sa šunkom i sirom', desc: 'Klasičan omlet, jutarnja terapija.',        price: 1000, img: 'products/omlet-sunka.jpg' },
-      { name: 'Omlet sa povrćem',        desc: 'Paprika, paradajz, luk, sir.',              price: 1000, img: 'products/omlet-povrce.jpg' },
-      { name: 'Omlet sa slaninom',       desc: 'Hrskava slanina i sir.',                    price: 1000, img: 'products/omlet-slanina.jpg' },
-    ],
-    'jaje-na-oko': [
-      { name: 'Jaja na oko (2 kom)',         desc: 'Sveža jaja, savršeno pripremljena.',    price: 1000, img: 'products/jaje-klasik.jpg' },
-      { name: 'Jaja na oko sa slaninom',     desc: 'Hrskava slanina uz dva jaja.',          price: 1000, img: 'products/jaje-slanina.jpg' },
-      { name: 'Jaja na oko sa kobasicom',    desc: 'Domaća kobasica i jaja.',               price: 1000, img: 'products/jaje-kobasica.jpg' },
+    'dorucak': [
+      { name: 'Šunka',        desc: 'Jaja po izboru, šunka, feta sir, ajvar, lepinja.',     price: 380 },
+      { name: 'Pečenica',     desc: 'Jaja po izboru, pečenica, feta sir, ajvar, lepinja.',  price: 420 },
+      { name: 'Pančeta',      desc: 'Jaja po izboru, pančeta, feta sir, ajvar, lepinja.',   price: 440 },
+      { name: 'Pršuta',       desc: 'Jaja po izboru, pršuta, feta sir, ajvar, lepinja.',    price: 480 },
+      { name: 'Prženice (3 kom.)', desc: 'Feta sir, ajvar.',                                price: 400 },
     ],
     'tortilje': [
-      { name: 'Tortilja sa piletinom', desc: 'Piletina, salata, sos.',                      price: 1000, img: 'products/tortilja-piletina.jpg' },
-      { name: 'Tortilja sa slaninom',  desc: 'Slanina, sir, povrće.',                       price: 1000, img: 'products/tortilja-slanina.jpg' },
-      { name: 'Vegetarijanska tortilja', desc: 'Sezonsko povrće i sos.',                    price: 1000, img: 'products/tortilja-veg.jpg' },
+      { name: 'Šunka',            desc: 'Šunka, kačkavalj, pavlaka, pomfrit.',                  price: 500 },
+      { name: 'Pečenica',         desc: 'Pečenica, kačkavalj, pavlaka, pomfrit.',               price: 550 },
+      { name: 'Pršuta',           desc: 'Pršuta, kačkavalj, pavlaka, pomfrit.',                 price: 650 },
+      { name: 'Hrskava piletina', desc: 'Hrskava piletina, kačkavalj, tartar sos, pomfrit.',    price: 550 },
     ],
-    'vafli': [
-      { name: 'Vafli sa čokoladom',   desc: 'Topla čokolada preko hrskavih vafli.',         price: 1000, img: 'products/vafli-cokolada.jpg' },
-      { name: 'Vafli sa Nutellom',    desc: 'Klasika koja uvek uspeva.',                    price: 1000, img: 'products/vafli-nutella.jpg' },
-      { name: 'Vafli sa voćem',       desc: 'Sveže voće i šlag.',                           price: 1000, img: 'products/vafli-voce.jpg' },
+    'obroci': [
+      { name: 'Pohovana palačinka Šunka',     desc: 'Šunka, kačkavalj, tartar sos, pomfrit.',           price: 500 },
+      { name: 'Pohovana palačinka Pečenica',  desc: 'Pečenica, kačkavalj, tartar sos, pomfrit.',        price: 550 },
+      { name: 'Pohovani kačkavalj',           desc: '2 kom., tartar sos, lepinja, pomfrit.',            price: 600 },
+      { name: 'Hrskava piletina (pola porcije)', desc: '4 štapića, tartar sos, pomfrit, lepinja.',      price: 400 },
+      { name: 'Hrskava piletina (cela porcija)', desc: '8 štapića, tartar sos, pomfrit, lepinja.',      price: 750 },
+      { name: 'Crunch batačići (pola porcije)',  desc: '5 kom., BBQ sos, pomfrit, lepinja.',            price: 500 },
+      { name: 'Crunch batačići (cela porcija)',  desc: '10 kom., BBQ sos, pomfrit, lepinja.',           price: 950 },
+    ],
+    'rizoto': [
+      { name: 'Rižoto sa piletinom', desc: 'Pileći file, pečurke, pirinač, neutralna pavlaka.', price: 700 },
+      { name: 'Vege rižoto',         desc: 'Pelat, pečurke, paprika, kukuruz, luk, pirinač.',   price: 700 },
+      { name: 'Frutti di Mare',      desc: 'Pelat, morski plodovi, pirinač.',                   price: 750 },
+    ],
+    'paste': [
+      { name: 'Frutti di Mare',   desc: 'Pelat, morski plodovi.',
+        prices: [{label:'Pola porcije', price:450},{label:'Cela porcija', price:750}] },
+      { name: 'Carbonara',        desc: 'Pančeta, žumance, neutralna pavlaka, parmezan.',
+        prices: [{label:'Pola porcije', price:450},{label:'Cela porcija', price:750}] },
+      { name: 'Bolognese',        desc: 'Bolonjeze sos, parmezan.',
+        prices: [{label:'Pola porcije', price:450},{label:'Cela porcija', price:750}] },
+      { name: 'Pasta sa piletinom', desc: 'Pileći file, pečurke, neutralna pavlaka.',
+        prices: [{label:'Pola porcije', price:450},{label:'Cela porcija', price:750}] },
+      { name: 'Quattro Formaggi', desc: 'Kačkavalj, gorgonzola, dimljeni kačkavalj, parmezan.',
+        prices: [{label:'Pola porcije', price:480},{label:'Cela porcija', price:780}] },
+      { name: 'Amatriciana',      desc: 'Pančeta, crni luk, pelat, parmezan, tucana paprika.',
+        prices: [{label:'Pola porcije', price:450},{label:'Cela porcija', price:750}] },
+    ],
+    'pice': [
+      { name: 'Margarita',  desc: 'Pelat, kačkavalj, origano, masline.',
+        prices: [{label:'24 cm', price:300},{label:'32 cm', price:600},{label:'42 cm', price:900}] },
+      { name: 'Vezuvio',    desc: 'Pelat, kačkavalj, šunka, masline, origano.',
+        prices: [{label:'24 cm', price:320},{label:'32 cm', price:660},{label:'42 cm', price:960}] },
+      { name: 'Funghi',     desc: 'Pelat, kačkavalj, pečurke, origano, masline.',
+        prices: [{label:'24 cm', price:320},{label:'32 cm', price:660},{label:'42 cm', price:960}] },
+      { name: 'Pančeta',    desc: 'Pelat, kačkavalj, pančeta, pečenica, origano, masline.',
+        prices: [{label:'24 cm', price:360},{label:'32 cm', price:760},{label:'42 cm', price:1060}] },
+      { name: 'Capricciosa', desc: 'Pelat, kačkavalj, šunka, pečurke, origano, masline.',
+        prices: [{label:'24 cm', price:340},{label:'32 cm', price:740},{label:'42 cm', price:1040}] },
+      { name: 'Mexicana',   desc: 'Pelat, kačkavalj, kulen, paprika, čili, origano, masline.',
+        prices: [{label:'24 cm', price:360},{label:'32 cm', price:760},{label:'42 cm', price:1060}] },
+      { name: 'Quattro Stagione', desc: 'Pelat, kačkavalj, jaje, pečurke, šunka, kulen, origano, masline.',
+        prices: [{label:'24 cm', price:360},{label:'32 cm', price:760},{label:'42 cm', price:1100}] },
+      { name: 'Quattro Formaggi', desc: 'Pavlaka, kačkavalj, gorgonzola, dimljeni kačkavalj, parmezan, origano, masline.',
+        prices: [{label:'24 cm', price:360},{label:'32 cm', price:760},{label:'42 cm', price:1100}] },
+      { name: 'Kulen',      desc: 'Pelat, kačkavalj, kulen, origano, masline.',
+        prices: [{label:'24 cm', price:340},{label:'32 cm', price:700},{label:'42 cm', price:1050}] },
+      { name: 'Laganica',   desc: 'Pelat, kačkavalj, pečenica, dimljeni kačkavalj, origano.',
+        prices: [{label:'24 cm', price:360},{label:'32 cm', price:760},{label:'42 cm', price:1100}] },
+      { name: 'Srbijana',   desc: 'Pelat, kačkavalj, pečenica, kulen, kajmak, pančeta, feferone, origano, masline.',
+        prices: [{label:'24 cm', price:400},{label:'32 cm', price:850},{label:'42 cm', price:1200}] },
+      { name: 'Tuna',       desc: 'Pelat, posni kačkavalj, tuna, origano, masline.',
+        prices: [{label:'24 cm', price:360},{label:'32 cm', price:760},{label:'42 cm', price:1100}] },
+      { name: 'Vegetarijana', desc: 'Pelat, posni kačkavalj, kukuruz, paprika, origano, masline.',
+        prices: [{label:'24 cm', price:360},{label:'32 cm', price:760},{label:'42 cm', price:1100}] },
+      { name: 'DR Specijal', desc: 'Pelat, kačkavalj, mortadela, mocarela, pistaći, rukola, čeri paradajz, origano, masline.',
+        prices: [{label:'24 cm', price:400},{label:'32 cm', price:800},{label:'42 cm', price:1200}] },
+      { name: 'Kalcona',    desc: 'Pelat, kačkavalj, šunka, pečurke, origano, masline.',
+        prices: [{label:'24 cm', price:400},{label:'32 cm', price:700},{label:'42 cm', price:1000}] },
+    ],
+    'sendvici': [
+      { name: 'Šunka',            desc: 'Šunka, kačkavalj, pavlaka.',
+        prices: [{label:'Mali', price:300},{label:'Veliki', price:380}] },
+      { name: 'Pečenica',         desc: 'Pečenica, kačkavalj, pavlaka.',
+        prices: [{label:'Mali', price:320},{label:'Veliki', price:400}] },
+      { name: 'Kulen',            desc: 'Kulen, kačkavalj, pavlaka.',
+        prices: [{label:'Mali', price:320},{label:'Veliki', price:400}] },
+      { name: 'Tuna',             desc: 'Tuna, kačkavalj, luk.',
+        prices: [{label:'Mali', price:340},{label:'Veliki', price:420}] },
+      { name: 'Pršuta',           desc: 'Pršuta, kačkavalj, pavlaka.',
+        prices: [{label:'Mali', price:380},{label:'Veliki', price:460}] },
+      { name: 'Hrskava piletina', desc: 'Hrskava piletina, kačkavalj, tartar sos.',
+        prices: [{label:'Mali', price:360},{label:'Veliki', price:440}] },
+      { name: 'Zlatiborski',      desc: 'Kajmak, jaje, goveđa pršuta.',
+        prices: [{label:'Mali', price:380},{label:'Veliki', price:460}] },
+      { name: 'DR Sendvič',       desc: 'Kačkavalj, mortadela, mocarela.',
+        prices: [{label:'Mali', price:360},{label:'Veliki', price:440}] },
+    ],
+    'tost-sendvici': [
+      { name: 'Šunka',    desc: 'Šunka, kačkavalj, pavlaka, pomfrit.',    price: 350 },
+      { name: 'Pečenica', desc: 'Pečenica, kačkavalj, pavlaka, pomfrit.', price: 400 },
+      { name: 'Kulen',    desc: 'Kulen, kačkavalj, pavlaka, pomfrit.',    price: 400 },
+    ],
+    'slane-palacinke': [
+      { name: 'Šunka',    desc: 'Šunka, kačkavalj, pavlaka.',    price: 380 },
+      { name: 'Pečenica', desc: 'Pečenica, kačkavalj, pavlaka.', price: 420 },
+      { name: 'Kulen',    desc: 'Kulen, kačkavalj, pavlaka.',    price: 420 },
+      { name: 'Pršuta',   desc: 'Pršuta, kačkavalj, pavlaka.',   price: 450 },
+    ],
+    'dodaci-slano': [
+      { name: 'Goveđa salata',      desc: '', price:  80 },
+      { name: 'Pileća salata',      desc: '', price:  80 },
+      { name: 'Pečurke u pavlaci',  desc: '', price:  60 },
+      { name: 'Kačkavalj',          desc: '', price: 100 },
+      { name: 'Šunka',              desc: '', price:  80 },
+      { name: 'Pečenica',           desc: '', price: 100 },
+      { name: 'Kulen',              desc: '', price: 100 },
+      { name: 'Pančeta',            desc: '', price: 120 },
+      { name: 'Pršuta',             desc: '', price: 140 },
+      { name: 'Masline',            desc: '', price:  80 },
     ],
     'slatke-palacinke': [
-      { name: 'Palačinke sa Nutellom', desc: 'Tanke palačinke sa Nutellom.',                price: 1000, img: 'products/slatke-nutella.jpg' },
-      { name: 'Palačinke sa plazmom',  desc: 'Plazma krema u svakom zalogaju.',             price: 1000, img: 'products/slatke-plazma.jpg' },
-      { name: 'Voćna pita',            desc: 'Domaća pita sa sezonskim voćem.',             price: 1000, img: 'products/slatke-vocna-pita.jpg' },
-      { name: 'Palačinke sa eurokremom', desc: 'Klasik za male i velike.',                  price: 1000, img: 'products/slatke-eurokrem.jpg' },
+      { name: 'Prazna',                          desc: '', price: 150 },
+      { name: 'Eurokrem',                        desc: '', price: 290 },
+      { name: 'Eurokrem + Plazma',               desc: '', price: 320 },
+      { name: 'Eurokrem + Plazma + mleko',       desc: '', price: 340 },
+      { name: 'Eurokrem + Plazma + višnja',      desc: '', price: 360 },
+      { name: 'Eurokrem + Plazma + malina',      desc: '', price: 360 },
+      { name: 'Eurokrem + Plazma + banana',      desc: '', price: 360 },
+      { name: 'Džem',                            desc: '', price: 250 },
+      { name: 'Kinder',                          desc: '', price: 420 },
+      { name: 'Milka',                           desc: '', price: 420 },
+      { name: 'Nutella',                         desc: '', price: 320 },
+      { name: 'Nutella + Plazma',                desc: '', price: 350 },
+      { name: 'Nutella + Plazma + mleko',        desc: '', price: 370 },
+      { name: 'Nutella + Plazma + višnja',       desc: '', price: 390 },
+      { name: 'Nutella + Plazma + malina',       desc: '', price: 390 },
+      { name: 'Nutella + Plazma + banana',       desc: '', price: 390 },
+    ],
+    'dodaci-slatko': [
+      { name: 'Lešnik',   desc: '', price: 70 },
+      { name: 'Badem',    desc: '', price: 70 },
+      { name: 'Orah',     desc: '', price: 60 },
+      { name: 'Kikiriki', desc: '', price: 50 },
+      { name: 'Kokos',    desc: '', price: 50 },
+      { name: 'Plazma',   desc: '', price: 50 },
+      { name: 'Banana',   desc: '', price: 50 },
+      { name: 'Višnja',   desc: '', price: 50 },
+      { name: 'Malina',   desc: '', price: 50 },
+    ],
+    'vafl': [
+      { name: 'Eurokrem', desc: '', price: 250 },
+      { name: 'Nutella',  desc: '', price: 290 },
+      { name: 'Džem',     desc: '', price: 220 },
+    ],
+    'pomfrit': [
+      { name: '100 g', desc: '', price: 150 },
+      { name: '200 g', desc: '', price: 250 },
+    ],
+    'sokovi': [
+      { name: 'Pepsi limenka', desc: '', price: 150 },
+      { name: 'Guarana',       desc: '', price: 150 },
     ],
   };
 
   const CATEGORIES = [
-    { id: 'pizza',              img: 'pizza.jpg',     title: 'Pizza',                line: 'Glavna terapija.',                accent: 'blood' },
-    { id: 'paste',              img: 'paste.jpg',     title: 'Paste',                line: 'Kremasto rešenje za glad.',       accent: 'neon'  },
-    { id: 'hrskava-piletina',   img: 'piletina.jpg',  title: 'Hrskava piletina',     line: 'Kad treba nešto ozbiljno.',       accent: 'blood' },
-    { id: 'pohovane-palacinke', img: 'pohovane.jpg',  title: 'Pohovane palačinke',   line: 'Terapija sa krckanjem.',          accent: 'neon'  },
-    { id: 'sendvici',           img: 'sendvic.jpg',   title: 'Sendviči',             line: 'Brzo, jako, konkretno.',          accent: 'blood' },
-    { id: 'omleti',             img: 'omlet.jpg',     title: 'Omleti',               line: 'Jutarnja terapija.',              accent: 'neon'  },
-    { id: 'jaje-na-oko',        img: 'jaje.jpg',      title: 'Jaje na oko',          line: 'Klasika za dobar početak dana.',  accent: 'blood' },
-    { id: 'tortilje',           img: 'tortilja.jpg',  title: 'Tortilje',             line: 'Terapija u pokretu.',             accent: 'neon'  },
-    { id: 'vafli',              img: 'vafli.jpg',     title: 'Vafli',                line: 'Slatka doza energije.',           accent: 'blood' },
-    { id: 'slatke-palacinke',   img: 'slatke.jpg',    title: 'Slatke palačinke',     line: 'Terapija za dušu.',               accent: 'neon'  },
+    { id: 'dorucak',          img: 'dorucak.jpg',          title: 'Doručak',          line: 'Do 12:00 h.',                  accent: 'blood' },
+    { id: 'tortilje',         img: 'tortilje.jpg',         title: 'Tortilje',         line: 'Terapija u pokretu.',          accent: 'neon'  },
+    { id: 'obroci',           img: 'obroci.jpg',           title: 'Obroci',           line: 'Konkretna terapija za glad.',  accent: 'blood' },
+    { id: 'rizoto',           img: 'rizoto.jpg',           title: 'Rižoto',           line: 'Toplo, kremasto i konkretno.', accent: 'neon'  },
+    { id: 'paste',            img: 'paste.jpg',            title: 'Paste',            line: 'Pene ili špagete.',            accent: 'blood' },
+    { id: 'pice',             img: 'pice.jpg',             title: 'Pice',             line: 'Glavna terapija.',             accent: 'neon'  },
+    { id: 'sendvici',         img: 'sendvici.jpg',         title: 'Sendviči',         line: 'Brzo, jako, konkretno.',       accent: 'blood' },
+    { id: 'tost-sendvici',    img: 'tost-sendvici.jpg',    title: 'Tost sendviči',    line: 'Do 12:00 h.',                  accent: 'neon'  },
+    { id: 'slane-palacinke',  img: 'slane-palacinke.jpg',  title: 'Slane palačinke',  line: 'Slana terapija.',              accent: 'blood' },
+    { id: 'dodaci-slano',     img: 'dodaci-slano.jpg',     title: 'Dodaci za slano',  line: 'Dodaj po ukusu.',              accent: 'neon'  },
+    { id: 'slatke-palacinke', img: 'slatke-palacinke.jpg', title: 'Slatke palačinke', line: 'Terapija za dušu.',            accent: 'blood' },
+    { id: 'dodaci-slatko',    img: 'dodaci-slatko.jpg',    title: 'Dodaci za slatko', line: 'Još bolji zalogaj.',           accent: 'neon'  },
+    { id: 'vafl',             img: 'vafl.jpg',             title: 'Vafl',             line: 'Slatka doza energije.',        accent: 'blood' },
+    { id: 'pomfrit',          img: 'pomfrit.jpg',          title: 'Pomfrit',          line: 'Hrskav dodatak.',              accent: 'neon'  },
+    { id: 'sokovi',           img: 'sokovi.jpg',           title: 'Sokovi',           line: 'Osveženje uz obrok.',          accent: 'blood' },
   ];
 
   const grid = document.getElementById('menu-grid');
   grid.innerHTML = CATEGORIES.map(c => `
     <article class="card-edge rounded-2xl overflow-hidden group cursor-pointer" data-category="${c.id}" role="button" tabindex="0" aria-label="Otvori kategoriju ${c.title}">
-      <div class="relative aspect-square overflow-hidden">
-        <img src="${c.img}" alt="${c.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      <div class="relative aspect-square overflow-hidden bg-[color:var(--muted)]">
+        <img src="${c.img}" alt="${c.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+             onerror="this.style.display='none';this.parentElement.classList.add('flex','items-center','justify-center');this.parentElement.insertAdjacentHTML('beforeend','<span class=\\'font-brush blood-text text-2xl\\'>Doktor Pizza</span>');" />
         <div class="absolute inset-0" style="background:linear-gradient(to top,var(--background),rgba(21,16,15,.3),transparent);"></div>
         <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full backdrop-blur-md border ${c.accent==='neon' ? 'neon-text' : 'blood-text'}"
               style="background:${c.accent==='neon'?'rgba(155,240,63,.15)':'rgba(214,51,39,.15)'};border-color:${c.accent==='neon'?'rgba(155,240,63,.4)':'rgba(214,51,39,.4)'};">Rx</span>
@@ -559,6 +658,24 @@
   const modalClose  = document.getElementById('category-modal-close');
   const modalBackdrop = document.getElementById('category-modal-backdrop');
 
+  function formatPrice(n) { return `${n} RSD`; }
+
+  function renderPriceBlock(p) {
+    if (Array.isArray(p.prices)) {
+      return `
+        <div class="mt-3 grid grid-cols-1 gap-1.5">
+          ${p.prices.map(opt => `
+            <div class="flex items-center justify-between gap-3 rounded-lg border border-border px-3 py-1.5"
+                 style="background:rgba(155,240,63,.05);">
+              <span class="text-xs uppercase tracking-wider text-[color:var(--muted-foreground)]">${opt.label}</span>
+              <span class="font-display text-lg neon-text leading-none">${formatPrice(opt.price)}</span>
+            </div>
+          `).join('')}
+        </div>`;
+    }
+    return `<div class="mt-3"><span class="font-display text-xl neon-text">${formatPrice(p.price)}</span></div>`;
+  }
+
   function openCategory(id) {
     const cat = CATEGORIES.find(c => c.id === id);
     const items = PRODUCTS[id] || [];
@@ -566,21 +683,10 @@
     modalTitle.textContent = cat.title;
     modalLine.textContent  = cat.line;
     modalGrid.innerHTML = items.length ? items.map(p => `
-      <article class="card-edge rounded-2xl overflow-hidden flex flex-col">
-        <div class="relative aspect-[4/3] overflow-hidden bg-[color:var(--muted)]">
-          <img src="${p.img}" alt="${p.name}" loading="lazy" class="h-full w-full object-cover"
-               onerror="this.style.display='none';this.parentElement.classList.add('flex','items-center','justify-center');this.parentElement.insertAdjacentHTML('beforeend','<span class=\'font-brush blood-text text-2xl\'>Doktor Pizza</span>');" />
-        </div>
-        <div class="p-4 flex flex-col flex-1">
-          <h4 class="font-display text-lg tracking-wide">${p.name}</h4>
-          <p class="text-xs text-[color:var(--muted-foreground)] mt-1 flex-1">${p.desc}</p>
-          <div class="mt-3 flex items-center justify-between gap-2">
-            <span class="font-display text-xl neon-text">${p.price} din</span>
-            <a href="tel:+381666608060" class="btn-blood inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-semibold uppercase tracking-wider">
-              <svg class="ico"><use href="#i-phone"/></svg> Naruči
-            </a>
-          </div>
-        </div>
+      <article class="card-edge rounded-2xl p-4 sm:p-5 flex flex-col">
+        <h4 class="font-display text-lg sm:text-xl tracking-wide">${p.name}</h4>
+        ${p.desc ? `<p class="text-xs text-[color:var(--muted-foreground)] mt-1">${p.desc}</p>` : ''}
+        ${renderPriceBlock(p)}
       </article>
     `).join('') : `<p class="text-[color:var(--muted-foreground)] col-span-full">Uskoro dostupno.</p>`;
     modal.classList.remove('hidden');
