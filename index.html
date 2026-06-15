@@ -83,6 +83,9 @@
   .glow-pulse-neon{animation:glow-pulse 2s ease-in-out infinite;}
   @keyframes glow-pulse-red{0%,100%{box-shadow:0 0 0 0 rgba(214,51,39,.6);}50%{box-shadow:0 0 0 14px rgba(214,51,39,0);}}
   .glow-pulse-red{animation:glow-pulse-red 2s ease-in-out infinite;}
+  @keyframes order-pulse{0%,100%{border-color:rgba(214,51,39,.6);box-shadow:0 0 20px rgba(214,51,39,.5),0 0 40px rgba(214,51,39,.2),0 0 0 0 rgba(214,51,39,.4);}50%{border-color:rgba(155,240,63,.6);box-shadow:0 0 20px rgba(155,240,63,.5),0 0 40px rgba(155,240,63,.2),0 0 0 10px rgba(155,240,63,0);}}
+  .glow-pulse-order{animation:order-pulse 3s ease-in-out infinite;}
+  @media (prefers-reduced-motion:reduce){.glow-pulse-order{animation:none;border-color:rgba(214,51,39,.6);box-shadow:0 0 20px rgba(214,51,39,.4);}}
   @keyframes float-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
   .animate-float-up{animation:float-up .8s ease-out both;}
   .ico{width:1em;height:1em;display:inline-block;vertical-align:-.125em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
@@ -111,6 +114,13 @@
 
 <!-- ============ FLOATING CONTACTS ============ -->
 <div class="fixed right-3 sm:right-5 bottom-5 z-50 flex flex-col gap-3">
+  <a href="viber://chat?number=+381666608060" aria-label="Naruči odmah preko Vibera" class="glow-pulse-order group relative flex items-center gap-3 rounded-full pl-3 pr-5 py-2.5 sm:pl-4 sm:pr-6 sm:py-3 transition-transform hover:scale-105" style="background:linear-gradient(135deg,#1f1715,#1a1311);border:2px solid rgba(214,51,39,.6);">
+    <span class="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full text-white text-lg sm:text-xl shrink-0" style="background:linear-gradient(135deg,#d63327,#9a221a);box-shadow:0 0 12px rgba(214,51,39,.4);">🍕</span>
+    <span class="flex flex-col leading-tight">
+      <span class="font-display text-sm sm:text-base tracking-wide text-[color:var(--foreground)]">Naruči odmah</span>
+      <span class="text-[10px] sm:text-xs text-[color:var(--muted-foreground)]">Besplatna dostava preko 500 din</span>
+    </span>
+  </a>
   <a href="viber://chat?number=+381666608060" aria-label="Viber" class="glow-pulse-neon group relative flex h-14 w-14 items-center justify-center rounded-full text-white transition-transform hover:scale-110" style="background:#7360f2;box-shadow:0 0 24px rgba(115,96,242,.6);">
     <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor" aria-hidden="true"><path d="M11.4 0C9.5.1 5.5.4 3.2 2.5 1.6 4.1 1 6.6.9 9.6c-.1 3 0 8.7 5.5 10.3v2.4s0 1 .6 1.2c.8.3 1.2-.5 2-1.4l1.4-1.6c3.7.3 6.6-.4 6.9-.5 1.7-.6 5.4-1 6-6.5.6-5.7-.3-9.3-1.9-11C20.4.4 16.5.1 14.6 0h-3.2z"/></svg>
   </a>
@@ -616,21 +626,21 @@
   };
 
   const CATEGORIES = [
-    { id: 'dorucak',          img: 'dorucak.jpg',          title: 'Doručak',          line: 'Do 12:00 h.',                  accent: 'blood' },
-    { id: 'tortilje',         img: 'tortilje.jpg',         title: 'Tortilje',         line: 'Terapija u pokretu.',          accent: 'neon'  },
-    { id: 'obroci',           img: 'obroci.jpg',           title: 'Obroci',           line: 'Konkretna terapija za glad.',  accent: 'blood' },
-    { id: 'rizoto',           img: 'rizoto.jpg',           title: 'Rižoto',           line: 'Toplo, kremasto i konkretno.', accent: 'neon'  },
-    { id: 'paste',            img: 'paste.jpg',            title: 'Paste',            line: 'Pene ili špagete.',            accent: 'blood' },
-    { id: 'pice',             img: 'pice.jpg',             title: 'Pice',             line: 'Glavna terapija.',             accent: 'neon'  },
-    { id: 'sendvici',         img: 'sendvici.jpg',         title: 'Sendviči',         line: 'Brzo, jako, konkretno.',       accent: 'blood' },
-    { id: 'tost-sendvici',    img: 'tost-sendvici.jpg',    title: 'Tost sendviči',    line: 'Do 12:00 h.',                  accent: 'neon'  },
-    { id: 'slane-palacinke',  img: 'slane-palacinke.jpg',  title: 'Slane palačinke',  line: 'Slana terapija.',              accent: 'blood' },
-    { id: 'dodaci-slano',     img: 'dodaci-slano.jpg',     title: 'Dodaci za slano',  line: 'Dodaj po ukusu.',              accent: 'neon'  },
-    { id: 'slatke-palacinke', img: 'slatke-palacinke.jpg', title: 'Slatke palačinke', line: 'Terapija za dušu.',            accent: 'blood' },
-    { id: 'dodaci-slatko',    img: 'dodaci-slatko.jpg',    title: 'Dodaci za slatko', line: 'Još bolji zalogaj.',           accent: 'neon'  },
-    { id: 'vafl',             img: 'vafl.jpg',             title: 'Vafl',             line: 'Slatka doza energije.',        accent: 'blood' },
-    { id: 'pomfrit',          img: 'pomfrit.jpg',          title: 'Pomfrit',          line: 'Hrskav dodatak.',              accent: 'neon'  },
-    { id: 'sokovi',           img: 'sokovi.jpg',           title: 'Sokovi',           line: 'Osveženje uz obrok.',          accent: 'blood' },
+    { id: 'dorucak',          img: 'dorucak.png',          title: 'Doručak',          line: 'Do 12:00 h.',                  accent: 'blood' },
+    { id: 'tortilje',         img: 'tortilje.png',         title: 'Tortilje',         line: 'Terapija u pokretu.',          accent: 'neon'  },
+    { id: 'obroci',           img: 'obroci.png',           title: 'Obroci',           line: 'Konkretna terapija za glad.',  accent: 'blood' },
+    { id: 'rizoto',           img: 'rizoto.png',           title: 'Rižoto',           line: 'Toplo, kremasto i konkretno.', accent: 'neon'  },
+    { id: 'paste',            img: 'paste.png',            title: 'Paste',            line: 'Pene ili špagete.',            accent: 'blood' },
+    { id: 'pice',             img: 'pice.png',             title: 'Pice',             line: 'Glavna terapija.',             accent: 'neon'  },
+    { id: 'sendvici',         img: 'sendvici.png',         title: 'Sendviči',         line: 'Brzo, jako, konkretno.',       accent: 'blood' },
+    { id: 'tost-sendvici',    img: 'tost-sendvici.png',    title: 'Tost sendviči',    line: 'Do 12:00 h.',                  accent: 'neon'  },
+    { id: 'slane-palacinke',  img: 'slane-palacinke.png',  title: 'Slane palačinke',  line: 'Slana terapija.',              accent: 'blood' },
+    { id: 'dodaci-slano',     img: 'dodaci-slano.png',     title: 'Dodaci za slano',  line: 'Dodaj po ukusu.',              accent: 'neon'  },
+    { id: 'slatke-palacinke', img: 'slatke-palacinke.png', title: 'Slatke palačinke', line: 'Terapija za dušu.',            accent: 'blood' },
+    { id: 'dodaci-slatko',    img: 'dodaci-slatko.png',    title: 'Dodaci za slatko', line: 'Još bolji zalogaj.',           accent: 'neon'  },
+    { id: 'vafl',             img: 'vafl.png',             title: 'Vafl',             line: 'Slatka doza energije.',        accent: 'blood' },
+    { id: 'pomfrit',          img: 'pomfrit.png',          title: 'Pomfrit',          line: 'Hrskav dodatak.',              accent: 'neon'  },
+    { id: 'sokovi',           img: 'sokovi.png',           title: 'Sokovi',           line: 'Osveženje uz obrok.',          accent: 'blood' },
   ];
 
   const grid = document.getElementById('menu-grid');
