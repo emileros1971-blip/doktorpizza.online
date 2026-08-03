@@ -1,0 +1,136 @@
+name: Apply Dr Pizza launch fixes
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/apply-drpizza-fixes.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply requested changes
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          instagram = 'https://www.instagram.com/pizzajeterapija_drpizza?igsh=ZTA2ZWZka3hmZHpw'
+          facebook = 'https://www.facebook.com/share/1Esy565ThE/'
+          viber = 'viber://chat?number=%2B381666608060'
+
+          html = html.replace('viber://chat?number=+381666608060', viber)
+          html = html.replace('href="https://instagram.com"', f'href="{instagram}"')
+          html = html.replace('href="https://facebook.com"', f'href="{facebook}"')
+          html = html.replace('rel="noreferrer"', 'rel="noopener noreferrer"')
+
+          css_anchor = '  .ico{width:1em;height:1em;display:inline-block;vertical-align:-.125em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}\n'
+          css_addition = '''  .menu-card{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;}\n  .menu-card:hover,.menu-card:focus-visible{transform:translateY(-3px);border-color:rgba(155,240,63,.5);box-shadow:0 20px 60px -20px rgba(0,0,0,.8),0 0 24px rgba(155,240,63,.16);outline:none;}\n  .menu-card-cta{display:inline-flex;align-items:center;gap:.35rem;color:var(--neon);font-weight:700;text-transform:uppercase;letter-spacing:.08em;}\n  .menu-image-cta{background:rgba(21,16,15,.82);border:1px solid rgba(155,240,63,.55);box-shadow:0 0 18px rgba(155,240,63,.2);}\n'''
+          if '.menu-card-cta{' not in html:
+              if css_anchor not in html:
+                  raise SystemExit('CSS insertion point not found.')
+              html = html.replace(css_anchor, css_anchor + css_addition)
+
+          old_grid = '''  const grid = document.getElementById('menu-grid');\n  grid.innerHTML = CATEGORIES.map(c => `\n    <article class="card-edge rounded-2xl overflow-hidden group cursor-pointer" data-category="${c.id}" role="button" tabindex="0" aria-label="Otvori kategoriju ${c.title}">\n      <div class="relative aspect-square overflow-hidden bg-[color:var(--muted)]">\n        <img src="${c.img}" alt="${c.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"\n             onerror="this.style.display='none';this.parentElement.classList.add('flex','items-center','justify-center');this.parentElement.insertAdjacentHTML('beforeend','<span class=\\'font-brush blood-text text-2xl\\'>Doktor Pizza</span>');" />\n        <div class="absolute inset-0" style="background:linear-gradient(to top,var(--background),rgba(21,16,15,.3),transparent);"></div>\n        <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full backdrop-blur-md border ${c.accent==='neon' ? 'neon-text' : 'blood-text'}"\n              style="background:${c.accent==='neon'?'rgba(155,240,63,.15)':'rgba(214,51,39,.15)'};border-color:${c.accent==='neon'?'rgba(155,240,63,.4)':'rgba(214,51,39,.4)'};">Rx</span>\n      </div>\n      <div class="p-4">\n        <h3 class="font-display text-lg sm:text-xl tracking-wide">${c.title}</h3>\n        <p class="text-xs text-[color:var(--muted-foreground)] mt-1">${c.line}</p>\n      </div>\n    </article>\n  `).join('');\n'''
+
+          new_grid = '''  function getMinimumPrice(categoryId) {\n    const values = (PRODUCTS[categoryId] || []).flatMap(item =>\n      Array.isArray(item.prices) ? item.prices.map(option => option.price) : [item.price]\n    ).filter(Number.isFinite);\n    return values.length ? Math.min(...values) : null;\n  }\n\n  const grid = document.getElementById('menu-grid');\n  grid.innerHTML = CATEGORIES.map(c => {\n    const minimumPrice = getMinimumPrice(c.id);\n    const priceLabel = minimumPrice ? `Već od ${minimumPrice} RSD` : 'Pogledaj cenovnik';\n    return `\n      <button type="button" class="menu-card card-edge rounded-2xl overflow-hidden group cursor-pointer text-left w-full" data-category="${c.id}" aria-label="Otvori ${c.title} — ${priceLabel}">\n        <div class="relative aspect-square overflow-hidden bg-[color:var(--muted)]">\n          <img src="${c.img}" alt="${c.title}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"\n               onerror="this.style.display='none';this.parentElement.classList.add('flex','items-center','justify-center');this.parentElement.insertAdjacentHTML('beforeend','<span class=\\'font-brush blood-text text-2xl\\'>Doktor Pizza</span>');" />\n          <div class="absolute inset-0" style="background:linear-gradient(to top,var(--background),rgba(21,16,15,.3),transparent);"></div>\n          <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full backdrop-blur-md border ${c.accent==='neon' ? 'neon-text' : 'blood-text'}"\n                style="background:${c.accent==='neon'?'rgba(155,240,63,.15)':'rgba(214,51,39,.15)'};border-color:${c.accent==='neon'?'rgba(155,240,63,.4)':'rgba(214,51,39,.4)'};">Rx</span>\n          <span class="menu-image-cta absolute bottom-3 left-3 right-3 rounded-full px-3 py-2 text-center text-[10px] sm:text-xs uppercase tracking-wider neon-text">Klikni za cene</span>\n        </div>\n        <div class="p-4">\n          <h3 class="font-display text-lg sm:text-xl tracking-wide">${c.title}</h3>\n          <p class="text-sm font-semibold text-white mt-1">${priceLabel}</p>\n          <p class="text-xs text-[color:var(--muted-foreground)] mt-1">${c.line}</p>\n          <span class="menu-card-cta mt-3 text-[11px] sm:text-xs">Pogledaj ponudu <span aria-hidden="true">→</span></span>\n        </div>\n      </button>`;\n  }).join('');\n'''
+
+          if old_grid not in html:
+              raise SystemExit('Expected menu-card block not found; no unsafe partial edit was made.')
+          html = html.replace(old_grid, new_grid)
+
+          old_keyboard = '''  grid.addEventListener('keydown', e => {\n    if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('[data-category]')) {\n      e.preventDefault();\n      openCategory(e.target.closest('[data-category]').dataset.category);\n    }\n  });\n'''
+          html = html.replace(old_keyboard, '')
+          path.write_text(html, encoding='utf-8')
+
+      - name: Run launch diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          import re
+
+          html = Path('index.html').read_text(encoding='utf-8')
+          required = [
+              'GTM-WRRHGMD3',
+              'viber://chat?number=%2B381666608060',
+              'https://www.instagram.com/pizzajeterapija_drpizza?igsh=ZTA2ZWZka3hmZHpw',
+              'https://www.facebook.com/share/1Esy565ThE/',
+              'Klikni za cene',
+              'Pogledaj ponudu',
+              'getMinimumPrice',
+              '<button type="button" class="menu-card',
+          ]
+          missing = [value for value in required if value not in html]
+          if missing:
+              raise SystemExit(f'Missing required markers: {missing}')
+          forbidden = [
+              'href="https://instagram.com"',
+              'href="https://facebook.com"',
+              'viber://chat?number=+381666608060',
+          ]
+          present = [value for value in forbidden if value in html]
+          if present:
+              raise SystemExit(f'Obsolete links remain: {present}')
+          if html.count('GTM-WRRHGMD3') < 2:
+              raise SystemExit('GTM is not present in both required positions.')
+          if html.count('id="category-modal"') != 1:
+              raise SystemExit('Category modal missing or duplicated.')
+
+          class AssetParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.assets = []
+              def handle_starttag(self, tag, attrs):
+                  values = dict(attrs)
+                  for key in ('src', 'href'):
+                      value = values.get(key)
+                      if value and not value.startswith(('http://','https://','tel:','viber:','#','data:','mailto:')):
+                          self.assets.append(value.split('?', 1)[0])
+
+          parser = AssetParser()
+          parser.feed(html)
+          dynamic_images = re.findall(r"img:\s*'([^']+)'", html)
+          assets = set(parser.assets + dynamic_images)
+          missing_assets = sorted(asset for asset in assets if not Path(asset).exists())
+          if missing_assets:
+              raise SystemExit(f'Missing local assets: {missing_assets}')
+
+          scripts = re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', html, flags=re.S | re.I)
+          Path('/tmp/inline-scripts.js').write_text('\n'.join(scripts), encoding='utf-8')
+          print(f'Validated {len(assets)} local assets and {len(scripts)} inline scripts.')
+          PY
+          node --check /tmp/inline-scripts.js
+          python -m http.server 8000 >/tmp/drpizza-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          sleep 2
+          curl --fail --silent --show-error http://127.0.0.1:8000/index.html >/tmp/drpizza-index.html
+          grep -q 'Klikni za cene' /tmp/drpizza-index.html
+          grep -q 'GTM-WRRHGMD3' /tmp/drpizza-index.html
+
+      - name: Publish verified fix and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/apply-drpizza-fixes.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- index.html .github/workflows/apply-drpizza-fixes.yml
+          git commit -m "Fix ordering links and clarify menu pricing"
+          git push origin HEAD:main
